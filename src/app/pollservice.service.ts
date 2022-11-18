@@ -6,7 +6,8 @@ import { catchError, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class PollserviceService {
-  baseURl ='http://hacathanprafulla-env.eba-kgp8wwme.ap-south-1.elasticbeanstalk.com';
+  userType: string ='';
+  baseURl ='http://hacathanprafulla-env.eba-kgp8wwme.ap-south-1.elasticbeanstalk.com:80';
   constructor(private http: HttpClient) { }
 
   postApi(url:any,param:any){
@@ -32,17 +33,18 @@ export class PollserviceService {
 
   getApi(url:any){
     let finalURL = this.baseURl+url;
-    let auth;
+    let auth={ token: '561586ac-1da5-431e-beaf-ff16cb396e39'}
     var userObject =localStorage.getItem('userObject');
     if(userObject != undefined || userObject != null ){
-      let record = JSON.parse(userObject);
-       auth= {
-        token: '561586ac-1da5-431e-beaf-ff16cb396e39',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      };
+      // let record = JSON.parse(userObject);
+      //  auth= {
+      //   token: '561586ac-1da5-431e-beaf-ff16cb396e39',
+      //   'Content-Type': 'application/json',
+      //   'Access-Control-Allow-Origin': '*'
+      // };
     }
-    return this.http.get(finalURL,{},auth)
+    return this.http.get(finalURL,{
+      headers: auth})
     .pipe(
       catchError((error: HttpErrorResponse) => {
         console.log(error.message);

@@ -33,6 +33,17 @@ export class LoginPage implements OnInit {
       "email":"diya@gmail.com",
       "password":"diya@321"
       }
+      let obj = {
+        "sessionId": "561586ac-1da5-431e-beaf-ff16cb396e39",
+        "user": {
+            "userId": 2,
+            "name": "kartik",
+            "email": "kartik@gmail.com",
+            "role": "user",
+            "createdAt": "2022-11-18T16:04:40.000+00:00"
+        }
+    }
+    localStorage.setItem("userObject",JSON.stringify(obj));
 
     this.pollservice.postApi(url,params).subscribe(response =>{
       response ={"sessionId": "c35c71fc-0bcc-425a-9f21-f6c874f6ed25",
