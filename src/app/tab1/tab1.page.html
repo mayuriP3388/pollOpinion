@@ -5,7 +5,7 @@
   <ion-card mode="ios" *ngFor="let poll of polls;let i=index">
     <ion-card-header>    
       <ion-card-title>{{poll.question}}</ion-card-title>  
-      <ion-card-subtitle>{{poll.totalVotes}} votes</ion-card-subtitle>
+      <!-- <ion-card-subtitle>{{poll.totalVotes}} votes</ion-card-subtitle> -->
     </ion-card-header>
     <ion-card-content>
       <ion-radio-group>      
@@ -14,7 +14,7 @@
            <ion-label>{{j+1}} {{option.choice}}
              <!-- <ion-progress-bar value="{{getValue(option.votes,poll.totalVotes)}}" color="{{option.color}}" *ngIf="alreadyVoted"></ion-progress-bar> -->
            </ion-label>
-           <ion-note *ngIf="alreadyVoted">{{getPercent(option.votes,poll.totalVotes)}}</ion-note>
+           <!-- <ion-note *ngIf="alreadyVoted">{{getPercent(option.votes,poll.totalVotes)}}</ion-note> -->
          </ion-item>
       </ion-radio-group>
       <ion-button [disabled]="checkVotedOrNot(i)" *ngIf="checkIsVoted(i)" (click)="Vote(i)"  style="width: 100%;">{{checkVotedOrNot(i)?"Voted":"Vote"}}</ion-button>
