@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PollserviceService } from '../pollservice.service';
 
 @Component({
   selector: 'app-tab3',
@@ -8,7 +9,7 @@ import { Component } from '@angular/core';
 export class Tab3Page {
   question:any ='';
   userOption:any
-  constructor() {}
+  constructor( public pollservice: PollserviceService) {}
   ngOnInit() {
     
 this.userOption =[
@@ -45,11 +46,18 @@ this.userOption =[
         for(let i =0; i<this.userOption.length;i++){
           content.push(this.userOption[i].optionValue)
         }
+        let url ='/addPoll'
         let postreq ={
           'userId':1,
           'question': this.question,
           'options': content
         }
-       console.log(postreq) 
+      
+    this.pollservice.postApi(url,postreq).subscribe(response =>{
+
+    },
+    error =>{
+
+    });
       }
 }
