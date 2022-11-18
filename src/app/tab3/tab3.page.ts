@@ -9,6 +9,7 @@ import { PollserviceService } from '../pollservice.service';
 export class Tab3Page {
   question:any ='';
   userOption:any
+  isDisabled :boolean=false
   constructor( public pollservice: PollserviceService) {}
   ngOnInit() {
     
@@ -36,28 +37,39 @@ this.userOption =[
         }else{
           console.log('Max 4')
         }
-       
+        
       }
       deleted(value:any,index:number){
         this.userOption.splice(index,1)
       }
+      onChangeTime(data :any) {
+        console.log(data);        
+      }
       post(){
         var content =[]
+        
         for(let i =0; i<this.userOption.length;i++){
           content.push(this.userOption[i].optionValue)
         }
-        let url ='/addPoll'
-        let postreq ={
-          'userId':1,
-          'question': this.question,
-          'options': content
-        }
+        debugger
+        // if((this.question != '' && this.question !=null && this.question !=undefined)){
+          localStorage.getItem("userObject");
+          let url ='/addPoll'
+          let postreq ={
+            'userId':1,
+            'question': this.question,
+            'options': content
+          }
+        
+      this.pollservice.postApi(url,postreq).subscribe(response =>{
+            debugger
+      },
+      error =>{
+  
+      });
+        // }else{
+
+        // }
       
-    this.pollservice.postApi(url,postreq).subscribe(response =>{
-
-    },
-    error =>{
-
-    });
       }
 }
