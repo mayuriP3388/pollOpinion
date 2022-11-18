@@ -31,7 +31,8 @@ const routes: Routes = [
   {
     path: 'livepoll',
     loadChildren: () => import('./livepoll/livepoll.module').then( m => m.LivepollPageModule)
-  },  {
+  },
+  {
     path: 'add-user',
     loadChildren: () => import('./add-user/add-user.module').then( m => m.AddUserPageModule)
   },
