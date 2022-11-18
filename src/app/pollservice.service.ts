@@ -33,16 +33,17 @@ export class PollserviceService {
 
   getApi(url:any){
     let finalURL = this.baseURl+url;
-    let auth={ token: '561586ac-1da5-431e-beaf-ff16cb396e39'}
     var userObject =localStorage.getItem('userObject');
+    let auth;
     if(userObject != undefined || userObject != null ){
-      // let record = JSON.parse(userObject);
-      //  auth= {
-      //   token: '561586ac-1da5-431e-beaf-ff16cb396e39',
-      //   'Content-Type': 'application/json',
-      //   'Access-Control-Allow-Origin': '*'
-      // };
+      let record = JSON.parse(userObject);
+       auth = {
+        token: record.sessionId,
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      };
     }
+    
     return this.http.get(finalURL,{
       headers: auth})
     .pipe(

@@ -28,42 +28,29 @@ export class LoginPage implements OnInit {
   }
 
   login(){
-    let url ='/login',
-    params = {
-      "email":"diya@gmail.com",
-      "password":"diya@321"
-      }
-      let obj = {
-        "sessionId": "561586ac-1da5-431e-beaf-ff16cb396e39",
-        "user": {
-            "userId": 2,
-            "name": "kartik",
-            "email": "kartik@gmail.com",
-            "role": "user",
-            "createdAt": "2022-11-18T16:04:40.000+00:00"
-        }
-    }
-    localStorage.setItem("userObject",JSON.stringify(obj));
+    let url ='/login';
 
+    if (this.loginForm.invalid) {
+    
+      console.log('Please provide all the required values!')
+      // return false;
+    } else {
+      
+      let params = {
+        "email":this.loginForm.value.email,
+        "password":this.loginForm.value.password,
+      }
+    
     this.pollservice.postApi(url,params).subscribe(response =>{
-      response ={"sessionId": "c35c71fc-0bcc-425a-9f21-f6c874f6ed25",
-      "user": {
-          "userId": 2,
-          "name": "diya",
-          "email": "diya@gmail.com",
-          "role": "admin",
-          "createdAt": "2022-11-18T09:21:00.000+00:00"
-        }}
         localStorage.setItem("userObject",JSON.stringify(response));
         this.router.navigate(['/admin-dashboard']);
       },
     error =>{
 
     });
-   
-
     this.router.navigate(['/admin-dashboard']);
   }
+}
 
   signUP(){
     this.router.navigate(['/add-user']);
