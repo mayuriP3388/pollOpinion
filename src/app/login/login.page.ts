@@ -43,12 +43,12 @@ export class LoginPage implements OnInit {
     
     this.pollservice.postApi(url,params).subscribe(response =>{
         localStorage.setItem("userObject",JSON.stringify(response));
-        this.router.navigate(['/admin-dashboard']);
+        this.router.navigate(['/admin-dashboard/tab1']);
       },
     error =>{
 
     });
-    this.router.navigate(['/admin-dashboard']);
+   
   }
 }
 
