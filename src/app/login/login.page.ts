@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { PollserviceService } from '../pollservice.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,8 @@ import { ModalController } from '@ionic/angular';
 export class LoginPage implements OnInit {
 
   constructor(public modalCtrl: ModalController,
-    public router: Router) { }
+    public router: Router,
+    public pollservice: PollserviceService) { }
 
   ngOnInit() {
   }
@@ -20,6 +22,23 @@ export class LoginPage implements OnInit {
   }
 
   login(){
+    let url ='',
+    params = {
+
+    };
+
+    this.pollservice.postApi(url,params).subscribe(response =>{
+
+    },
+    error =>{
+
+    });
+   
+
     this.router.navigate(['/admin-dashboard']);
+  }
+
+  signUP(){
+    this.router.navigate(['/add-user']);
   }
 }

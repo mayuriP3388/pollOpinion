@@ -3,7 +3,11 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  
   <div class="centerlogin">
+    <ion-card>
+      <ion-card-header>
+    <div > <img src="assets/img/logo.png" alt="" srcset="" style="width: 30%;"> </div>
             <div class="title">
               <h2>Lets sign you in</h2>
               <p>Wecome back, You've been missed!</p>
@@ -13,15 +17,19 @@
             <ion-input placeholder="Password" type="password" class="primary-input"></ion-input>
 
             <div class="ion-margin-top ion-text-right forget">
-              <a>Forgot Password?</a>
+              <!-- <a>Forgot Password?</a> -->
             </div>
 
             <div class="ion-margin-top">
-              <ion-button expand="block" (click)="login()">Sign in</ion-button>
+              <ion-button class="bg-class" expand="block" (click)="login()">Sign in</ion-button>
             </div>
 
             <div class="ion-margin-top ion-text-center">
-              <a (click)="dismiss()">Close</a>
+              <a (click)="signUP()">Sign up</a>
+              <!-- <a (click)="dismiss()">Close</a> -->
             </div>
-    </div>
+          </ion-card-header>
+        </ion-card>
+          </div>
+ 
 </ion-content>
