@@ -10,6 +10,11 @@ export class PollserviceService {
   constructor(private http: HttpClient) { }
 
   postApi(url:any,param:any){
+    let auth = {
+      tokenId: localStorage.getItem('sessionId'),
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    };
     let finalURL = this.baseURl+url;
     return this.http.post(finalURL, param)
     .pipe(

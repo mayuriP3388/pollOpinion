@@ -5,8 +5,12 @@
 </ion-header> -->
 
 <ion-content class="ion-padding">
-  <form [formGroup]="addform"  (ngSubmit)="proceed()">
+  
   <div class="centerlogin" >
+    <ion-card>
+      <ion-card-header>
+  <form [formGroup]="addform"  (ngSubmit)="proceed()">
+  
       <div class="title">
         <h2>Register here</h2>
         <!-- <p>Wecome back, You've been missed!</p> -->
@@ -26,6 +30,9 @@
       <div class="ion-margin-top ion-text-center">
         <a (click)="signUP()">Sign In </a>
       </div>
-  </div>
+  
   </form>
+</ion-card-header>
+</ion-card>
+</div>
 </ion-content>
