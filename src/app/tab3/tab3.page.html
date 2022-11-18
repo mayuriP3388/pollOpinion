@@ -1,17 +1,45 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
-  </ion-toolbar>
+
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card mode="ios">
+    <ion-card-header>    
+     Poll question
+    </ion-card-header>
+    
+    <ion-card-content>
+      <ion-input placeholder="Custom input" class="custom"  [(ngModel)] ='question'></ion-input>
+    </ion-card-content>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+
+    <ion-card-header>    
+      Option <span>Max 4</span>
+     </ion-card-header>
+     
+     <ion-card-content>
+      <div *ngFor="let poll of userOption;let i=index">
+        <ion-input [placeholder]="poll.placeholder" [(ngModel)] ="poll.optionValue" class="custom"></ion-input>
+        <ion-icon *ngIf="poll.isDeleted" (click)="deleted(poll,i)" name="trash-outline"></ion-icon>
+      </div>
+
+      <ion-button (click)="addMore()">Add More</ion-button>
+      <!-- <div>
+        <ion-input placeholder="Option 1" class="custom"></ion-input>
+        <ion-icon name="trash-outline"></ion-icon>
+      </div> -->
+      <!-- <div>
+        <ion-input placeholder="Option 1" class="custom"></ion-input>
+        <ion-icon name="trash-outline"></ion-icon>
+      </div>
+      <div>
+        <ion-input placeholder="Option 1" class="custom"></ion-input>
+        <ion-icon name="trash-outline"></ion-icon>
+      </div> -->
+       
+     </ion-card-content>
+  </ion-card> 
+<ion-button (click)="post()">Post</ion-button>
+
+ 
 </ion-content>
