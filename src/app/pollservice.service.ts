@@ -6,7 +6,7 @@ import { catchError, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class PollserviceService {
-  userType: string ='';
+  userType: any ;
   baseURl ='http://hacathanprafulla-env.eba-kgp8wwme.ap-south-1.elasticbeanstalk.com:80';
   constructor(private http: HttpClient) { }
 
@@ -44,8 +44,8 @@ export class PollserviceService {
       };
     }
     
-    return this.http.get(finalURL,{
-      headers: auth})
+    return this.http.get(finalURL,
+      { headers: new HttpHeaders(auth) })
     .pipe(
       catchError((error: HttpErrorResponse) => {
         console.log(error.message);

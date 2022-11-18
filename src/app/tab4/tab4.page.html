@@ -1,8 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>tab4</ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content>
   <ion-card mode="ios" *ngFor="let poll of polls;let i=index">
@@ -12,7 +8,7 @@
     </ion-card-header>
     <ion-card-content>
       <!-- <ion-radio-group>       -->
-        <ion-item *ngFor="let option of poll.options;let j=index">
+        <ion-item  *ngFor="let option of poll.options;let j=index">
           <!-- <ion-radio slot="start" color="{{option.color}}"></ion-radio> -->
            <ion-label>{{option.choice}}
              <ion-progress-bar [value]="option.percentage" color="{{option.color}}"></ion-progress-bar>
