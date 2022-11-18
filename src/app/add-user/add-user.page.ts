@@ -50,10 +50,10 @@ export class AddUserPage implements OnInit {
         "role":type
     }
     
-      this.pollservice.postApi(url,body).subscribe((res :any) => {
-        if(res.message == ""){
+      this.pollservice.postApi(url,body).then((res :any) => {
+        if(res.message == "SUCCESS"){
          
-          this.router.navigate(['']);
+          this.router.navigate(['login']);
         }
         console.log(res)
       })
