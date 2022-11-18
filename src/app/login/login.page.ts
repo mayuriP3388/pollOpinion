@@ -12,23 +12,27 @@ import { PollserviceService } from '../pollservice.service';
 export class LoginPage implements OnInit {
   loginForm :FormGroup;
   errMSG ='';
+  email ="";
+  password ="";
   constructor(public modalCtrl: ModalController,
     public router: Router,
     public pollservice: PollserviceService) {
       this.loginForm = new FormGroup({
-        email:  new FormControl('', [Validators.required]),
+        email:  new FormControl('', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
         password:  new FormControl('', [Validators.required])
       })
      }
 
   ngOnInit() {
-    localStorage.clear();
+  }
+  ionViewWillEnter(){
+    this.errMSG = '';
   }
 
   async dismiss() {
     await this.modalCtrl.dismiss();
   }
-
+  get f() { return this.loginForm.controls; }
   login(){
     let url ='/login';
 
@@ -49,7 +53,10 @@ export class LoginPage implements OnInit {
         this.errMSG =res.message;
       }else{
         this.pollservice.userType = response;
+        this.errMSG ='';
+        this.loginForm.setValue({email: '', password: ''});
         this.router.navigate(['/admin-dashboard/tab1']);
+        this.errMSG ='';
       }
        
       },
@@ -61,6 +68,7 @@ export class LoginPage implements OnInit {
 }
 
   signUP(){
+    this.loginForm.setValue({email: '', password: ''});
     this.router.navigate(['/add-user']);
   }
 }
