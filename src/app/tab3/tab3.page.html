@@ -19,7 +19,7 @@
      
      <ion-card-content>
       <div *ngFor="let poll of userOption;let i=index" class="add_more">
-        <ion-input [placeholder]="poll.placeholder" [(ngModel)] ="poll.optionValue" class="custom"></ion-input>
+        <ion-input [placeholder]="poll.placeholder" (ionChange)="onInputChange($event,i)"  [(ngModel)] ="poll.optionValue"class="custom"></ion-input>
         <ion-icon *ngIf="poll.isDeleted" (click)="deleted(poll,i)" name="trash-outline"></ion-icon>
       </div>
 
@@ -45,7 +45,7 @@
 
   </ion-card> 
   <br>
-  <ion-button (click)="post()" color="secondary" expand="block" style="margin: 0 30px;">Post</ion-button>
+  <ion-button color="secondary" [disabled]="post()" expand="block" style="margin: 0 30px;">Post</ion-button>
 
 
  
