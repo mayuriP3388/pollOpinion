@@ -4,21 +4,20 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./create-poll/create-poll.module').then( m => m.CreatePollPageModule)
+    loadChildren: () => import('./user-dashboard/user-dashboard.module').then( m => m.UserDashboardPageModule)
+  },
+  {
+    path: 'tabs/tab',
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'tabs',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    path: 'create-poll',
+    loadChildren: () => import('./create-poll/create-poll.module').then( m => m.CreatePollPageModule)
   },
-  // {
-  //   path: 'login',
-  //   loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
-  // },
-  
   {
     path: 'user-poll',
     loadChildren: () => import('./user-poll/user-poll.module').then( m => m.UserPollPageModule)
