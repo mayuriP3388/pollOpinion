@@ -6,10 +6,80 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tab4.page.scss'],
 })
 export class Tab4Page implements OnInit {
-
+  polls:any;
+  alreadyVoted = false;
   constructor() { }
 
   ngOnInit() {
+   
+
+
+  
+
+
   }
+  ionViewWillEnter(){
+    this.polls =[
+      {
+        question: "Which is better option to make mobile apps?",
+        totalVotes: 27,
+        options: [
+          {
+            choice: "Ionic",
+            votes: 10,
+            color: "primary"
+          },
+          {
+            choice: "Flutter",
+            votes: 9,
+            color: "success"
+          },
+          {
+            choice: "React Native",
+            votes: 5,
+            color: "warning"
+          },
+          {
+            choice: "Framework 7",
+            votes: 3,
+            color: "danger"
+          }
+        ]
+      }
+    ];
+
+      this.getPercent()
+  }
+  // polling(i:any, j:any) {
+  //   this.alreadyVoted = true;
+  //   this.polls[i]['options'][j]['votes'] = this.polls[i]['options'][j]['votes'] + 1;
+  //   this.polls[i]['totalVotes'] = this.polls[i]['totalVotes'] + 1;
+  //    }
+   
+    getValue(i:any, j:any) {
+    // let value = votes / totalVotes;
+
+    let value = this.polls[i].options[j].percentage
+    console.log(value)
+    return value;
+     }
+   
+    getPercent(votes?:any, totalVotes?:any) {
+    // let value = (votes / totalVotes) * 100;
+    // return Math.round(value) + "%";
+
+    for(let i = 0;i < this.polls.length ;i++){
+      for(let j = 0;j < this.polls[i].options.length ;j++){
+        var perc = this.calculateper(this.polls[i].options[j].votes,this.polls[i].totalVotes)
+        this.polls[i].options[j].percentage = perc
+      }
+    }
+    console.log(this.polls)
+     }
+
+     calculateper(votes:any,totavotes:any){
+      let value = (votes / totavotes) * 100;
+      return Math.round(value) + "%";
+     }
 
 }
