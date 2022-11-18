@@ -22,13 +22,15 @@ export class AdminDashboardPage implements OnInit {
     let userid= this.pollservice.userType.user.userId;
     let url ='/getAllPolls/';
     let sessionId = this.pollservice.userType.sessionId;
-    let params ={
+    let params = {
       "sessionId": sessionId,
       "userId" :userid
     }
     this.pollservice.postApi(url,params).subscribe(response =>{
      
        console.log("respone poll",response);
+       let res1 :any= response;
+       this.pollservice.unpublishList= res1.unplishedPolls;
        var res ={
         "publishedPolls": [
             {

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PollserviceService } from '../pollservice.service';
 
 @Component({
   selector: 'app-tab2',
@@ -6,38 +7,32 @@ import { Component } from '@angular/core';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-
-  constructor() {}
-  polls =[
-    {
-      "poll": {
-          "pollId": 2,
-          "userId": 2,
-          "question": "your favourite colour",
-          "createdAt": "2022-11-18T16:06:16.000+00:00",
-          "published": true,
-          "user":"aman"
-      },
-      "pollAnswers": [
-          {
-              "pollAnswerId": 4,
-              "pollId": 2,
-              "optionName": "red",
-              "votes": 0
-          },
-          {
-              "pollAnswerId": 5,
-              "pollId": 2,
-              "optionName": "yellow",
-              "votes": 1
-          },
-          {
-              "pollAnswerId": 6,
-              "pollId": 2,
-              "optionName": "black",
-              "votes": 0
-          }
-      ]
+  polls :any=[];
+  constructor( public pollservice: PollserviceService) {}
+  ngOnInit(){
+    this.polls = this.pollservice.unpublishList
   }
-  ];
+ 
+  approve(item:any){
+    let userid= this.pollservice.userType.user.userId;
+    let url ='/publishPoll';
+    let sessionId = this.pollservice.userType.sessionId;
+    let params = {
+      "sessionId": sessionId,
+      "userId" :userid,
+      "pollid":item.poll.pollId
+    }
+    this.pollservice.postApi(url,params).subscribe(response =>{
+     
+       console.log("respone poll",response);
+       let res1 :any= response;
+      //  this.pollservice.unpublishList= res1.unplishedPolls;
+      
+      },
+    error =>{
+
+    });
+  }
+
+  
 }
