@@ -15,7 +15,8 @@ export class Tab2Page {
           "userId": 2,
           "question": "your favourite colour",
           "createdAt": "2022-11-18T16:06:16.000+00:00",
-          "published": true
+          "published": true,
+          "user":"aman"
       },
       "pollAnswers": [
           {
