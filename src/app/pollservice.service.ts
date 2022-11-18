@@ -6,17 +6,24 @@ import { catchError, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class PollserviceService {
-  baseURl ='https://3d14-111-119-221-170.in.ngrok.io';
+  userType: string ='';
+  baseURl ='http://hacathanprafulla-env.eba-kgp8wwme.ap-south-1.elasticbeanstalk.com:80';
   constructor(private http: HttpClient) { }
 
   postApi(url:any,param:any){
-    let auth = {
-      tokenId: localStorage.getItem('sessionId'),
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
-    };
+    var userObject =localStorage.getItem('userObject');
+    let auth;
+    if(userObject != undefined || userObject != null ){
+      let record = JSON.parse(userObject);
+       auth = {
+        tokenId: record.sessionId,
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      };
+    }
+   
     let finalURL = this.baseURl+url;
-    return this.http.post(finalURL, param)
+    return this.http.post(finalURL, param, { headers: new HttpHeaders(auth) })
     .pipe(
       catchError((error: HttpErrorResponse) => {
         console.log(error.message);
@@ -24,8 +31,21 @@ export class PollserviceService {
       }));
   }
 
-  getApi(url:any,param:any){
-    return this.http.get(url, param)
+  getApi(url:any){
+    let finalURL = this.baseURl+url;
+    var userObject =localStorage.getItem('userObject');
+    let auth;
+    if(userObject != undefined || userObject != null ){
+      let record = JSON.parse(userObject);
+       auth = {
+        token: record.sessionId,
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      };
+    }
+    
+    return this.http.get(finalURL,{
+      headers: auth})
     .pipe(
       catchError((error: HttpErrorResponse) => {
         console.log(error.message);

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PollserviceService } from '../pollservice.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -6,10 +7,40 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-dashboard.page.scss'],
 })
 export class AdminDashboardPage implements OnInit {
-
-  constructor() { }
+  showtab =true;
+  constructor(public pollservice: PollserviceService) { }
 
   ngOnInit() {
+    var userObject = localStorage.getItem('userObject');
+    let record;
+    if(userObject != undefined || userObject != null){
+      record = JSON.parse(userObject);
+      this.pollservice.userType = record.user['role'];
+      this.showtab =  this.pollservice.userType == 'admin' ? true: true;
+      console.log("record",record)
+    }
+    console.log("userObject",userObject)
+
+    this.getAllPolls();
+  }
+  getAllPolls(){
+
+    let url ='/getAllPolls/1';
+    this.pollservice.getApi(url).subscribe(response =>{
+      response = {
+       "sessionId": "c35c71fc-0bcc-425a-9f21-f6c874f6ed25",
+      "user": {
+          "userId": 2,
+          "name": "diya",
+          "email": "diya@gmail.com",
+          "role": "admin",
+          "createdAt": "2022-11-18T09:21:00.000+00:00"
+        }}
+        localStorage.setItem("userObject",JSON.stringify(response));
+      },
+    error =>{
+
+    });
   }
 
 }

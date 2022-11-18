@@ -30,12 +30,12 @@ export class AddUserPage implements OnInit {
   }
 
   signUP(){
-
+    this.router.navigate(['/login']);
   }
   proceed(){
     console.log(this.addform.value)
     if (this.addform.invalid) {
-      this.router.navigate(['/dashboard']);
+    
       console.log('Please provide all the required values!')
       // return false;
     } else {
@@ -53,7 +53,7 @@ export class AddUserPage implements OnInit {
       this.pollservice.postApi(url,body).subscribe((res :any) => {
         if(res.message == "SUCCESS"){
          
-          this.router.navigate(['login']);
+          this.router.navigate(['/login']);
         }
         console.log(res)
       })

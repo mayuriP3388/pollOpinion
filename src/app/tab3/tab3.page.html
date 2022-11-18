@@ -18,12 +18,16 @@
      </ion-card-header>
      
      <ion-card-content>
-      <div *ngFor="let poll of userOption;let i=index">
+      <div *ngFor="let poll of userOption;let i=index" class="add_more">
         <ion-input [placeholder]="poll.placeholder" [(ngModel)] ="poll.optionValue" class="custom"></ion-input>
         <ion-icon *ngIf="poll.isDeleted" (click)="deleted(poll,i)" name="trash-outline"></ion-icon>
       </div>
 
+
+      <div class="footerbtn">
       <ion-button (click)="addMore()">Add More</ion-button>
+     
+    </div>
       <!-- <div>
         <ion-input placeholder="Option 1" class="custom"></ion-input>
         <ion-icon name="trash-outline"></ion-icon>
@@ -36,10 +40,13 @@
         <ion-input placeholder="Option 1" class="custom"></ion-input>
         <ion-icon name="trash-outline"></ion-icon>
       </div> -->
-       
      </ion-card-content>
+     
+
   </ion-card> 
-<ion-button (click)="post()">Post</ion-button>
+  <br>
+  <ion-button (click)="post()" color="secondary" expand="block" style="margin: 0 30px;">Post</ion-button>
+
 
  
 </ion-content>

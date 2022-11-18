@@ -9,3 +9,22 @@ ion-input.custom {
     --padding-start: 10px;
     --padding-top: 10px;
   }
+  .add_more{
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     margin-bottom: 20px;
+     ion-input{
+      min-width: 300px;
+      max-width: 300px;
+     }
+  } 
+  .footerbtn{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  ion-icon{
+    color: #f14949c9;
+    font-size: 25px;
+  }
