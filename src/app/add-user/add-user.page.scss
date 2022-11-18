@@ -1,0 +1,29 @@
+.title {
+    margin-bottom: 30px;
+}
+
+.title h4 {
+    color: var(--ion-color-primary);
+}
+
+.title p {
+    margin-top: 0 !important;
+    color: #999999;
+    font-size: small;
+}
+
+.forget a {
+    font-size: small !important;
+}
+ion-input{
+    background-color: #374151;
+    margin-bottom: 40px;
+    border-radius: 5px;
+}
+.centerlogin{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 250px;
+}
