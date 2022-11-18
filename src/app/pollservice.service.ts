@@ -11,19 +11,9 @@ export class PollserviceService {
   constructor(private http: HttpClient) { }
 
   postApi(url:any,param:any){
-    var userObject =localStorage.getItem('userObject');
-    let auth;
-    if(userObject != undefined || userObject != null ){
-      let record = JSON.parse(userObject);
-       auth = {
-        token: record.sessionId,
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      };
-    }
    
     let finalURL = this.baseURl+url;
-    return this.http.post(finalURL, param, { headers: new HttpHeaders(auth) })
+    return this.http.post(finalURL, param )
     .pipe(
       catchError((error: HttpErrorResponse) => {
         console.log(error.message);
@@ -44,8 +34,7 @@ export class PollserviceService {
       };
     }
     
-    return this.http.get(finalURL,
-      { headers: new HttpHeaders(auth) })
+    return this.http.get(finalURL)
     .pipe(
       catchError((error: HttpErrorResponse) => {
         console.log(error.message);
