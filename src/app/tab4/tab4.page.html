@@ -11,9 +11,10 @@
         <ion-item  *ngFor="let option of poll.options;let j=index">
           <!-- <ion-radio slot="start" color="{{option.color}}"></ion-radio> -->
            <ion-label>{{option.choice}}
-             <ion-progress-bar [value]="option.percentage" color="{{option.color}}"></ion-progress-bar>
+            <!-- <ion-progress-bar value="{{getValue(option.votes,poll.totalVotes)}}" color="{{option.color}}"></ion-progress-bar>  -->
+            <ion-progress-bar [value]="option.percentage" color="{{option.color}}"></ion-progress-bar> 
            </ion-label>
-           <!-- <ion-note *ngIf="alreadyVoted"></ion-note> -->
+           <ion-note>{{option.percentage*100  | number : '1.0-2'}}%</ion-note>
          </ion-item>
       <!-- </ion-radio-group> -->
     </ion-card-content>

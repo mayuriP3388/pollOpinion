@@ -8,21 +8,21 @@
     <ion-card>
       <ion-card-header>
     <div > 
-      <img src="assets/img/logo.png" alt="" srcset="" style="width: 30%;"> </div>
+      <img src="assets/img/logo.png" alt="" class="animate__animated animate__zoomIn" srcset="" style="width: 30%;"> </div>
             <div class="title">
-              <h2>Lets sign you in</h2>
+              <h2 class="animate_animated animate_fadeInDown">Lets sign you in</h2>
               <p>Wecome back, You've been missed!</p>
             </div>
             <form [formGroup]="loginForm"  (ngSubmit)="login()">
 
-              <ion-input placeholder="Username" type ="email"  formControlName ="email" class="primary-input"></ion-input>
-              <ion-input placeholder="Password" type="password"  formControlName ="password" class="primary-input"></ion-input>
+              <ion-input placeholder="Username" type ="email"  formControlName ="email" class="primary-input animate__animated animate__flipInX"></ion-input>
+              <ion-input placeholder="Password" type="password"  formControlName ="password" class="primary-input animate__animated animate__flipInX"></ion-input>
 
               <div class="ion-margin-top ion-text-right forget">
                 <!-- <a>Forgot Password?</a> -->
               </div>
 
-              <div class="ion-margin-top">
+              <div class="ion-margin-top animate__animated animate__zoomIn">
                 <ion-button class="bg-class" expand="block" type="submit" [disabled]="loginForm.invalid">Sign in</ion-button>
               </div>
           </form>

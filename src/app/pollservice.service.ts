@@ -16,7 +16,7 @@ export class PollserviceService {
     if(userObject != undefined || userObject != null ){
       let record = JSON.parse(userObject);
        auth = {
-        tokenId: record.sessionId,
+        token: record.sessionId,
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
       };
