@@ -36,6 +36,10 @@ ion-card, ion-toolbar, ion-item{
     max-width: 300px;
 }
 ion-input{
-    --background: gray !important;
+    // --background: gray !important;
     border-radius: 5px;
+    background: rgb(204, 204, 204) !important;
+    --color: rgb(51, 51, 51) !important;
+    font-weight: 500 !important;
+    --placeholder-color: rgb(51, 51, 51) !important;
 }
