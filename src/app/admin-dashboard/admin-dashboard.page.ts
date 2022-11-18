@@ -17,7 +17,7 @@ export class AdminDashboardPage implements OnInit {
     if(userObject != undefined || userObject != null){
       record = JSON.parse(userObject);
       this.pollservice.userType = record;
-      this.showtab =  record.user['role']== 'admin' ? true: true;
+      this.showtab =  record.user['role']== 'admin' ? true: false;
       this.userName =  record.user['name'];
       console.log("record",record)
     }
