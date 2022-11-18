@@ -28,10 +28,14 @@
 ion-content{
     --background: #000;
 }
-ion-card{
+ion-card, ion-toolbar, ion-item{
     --background: #333;
 }
 .centerlogin{
     min-width: 300px;
     max-width: 300px;
+}
+ion-input{
+    --background: gray !important;
+    border-radius: 5px;
 }
