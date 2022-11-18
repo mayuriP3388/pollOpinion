@@ -7,7 +7,7 @@ import { PollserviceService } from '../pollservice.service';
   styleUrls: ['./admin-dashboard.page.scss'],
 })
 export class AdminDashboardPage implements OnInit {
-
+  showtab =true;
   constructor(public pollservice: PollserviceService) { }
 
   ngOnInit() {
@@ -16,6 +16,7 @@ export class AdminDashboardPage implements OnInit {
     if(userObject != undefined || userObject != null){
       record = JSON.parse(userObject);
       this.pollservice.userType = record.user['role'];
+      this.showtab =  this.pollservice.userType == 'admin' ? true: true;
       console.log("record",record)
     }
     console.log("userObject",userObject)
@@ -24,7 +25,7 @@ export class AdminDashboardPage implements OnInit {
   }
   getAllPolls(){
 
-    let url ='/getAllPolls/2';
+    let url ='/getAllPolls/1';
     this.pollservice.getApi(url).subscribe(response =>{
       response = {
        "sessionId": "c35c71fc-0bcc-425a-9f21-f6c874f6ed25",
