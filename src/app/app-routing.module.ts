@@ -7,7 +7,11 @@ const routes: Routes = [
     loadChildren: () => import('./user-dashboard/user-dashboard.module').then( m => m.UserDashboardPageModule)
   },
   {
-    path: 'tabs/tab',
+    path: '',
+    loadChildren: () => import('./admin-dashboard/admin-dashboard.module').then( m => m.AdminDashboardPageModule)
+  },
+  {
+    path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
@@ -22,14 +26,13 @@ const routes: Routes = [
     path: 'user-poll',
     loadChildren: () => import('./user-poll/user-poll.module').then( m => m.UserPollPageModule)
   },
-  {
-    path: 'admin-dashboard',
-    loadChildren: () => import('./admin-dashboard/admin-dashboard.module').then( m => m.AdminDashboardPageModule)
-  },
+ 
   {
     path: 'livepoll',
     loadChildren: () => import('./livepoll/livepoll.module').then( m => m.LivepollPageModule)
-  }
+  },
+  
+
 ];
 @NgModule({
   imports: [
