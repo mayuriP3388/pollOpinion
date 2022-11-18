@@ -3,11 +3,16 @@
 
   <ion-card mode="ios" *ngFor="let poll of polls;let i=index">
     <ion-card-content>
-      <ion-label>Question:</ion-label>
-      <ion-card-title>{{poll.poll['question']}}</ion-card-title>
+      <div style="display: flex;">
+      <ion-label style="padding-right: 10px;">Question:</ion-label>
+      <ion-card-title>  {{poll.poll['question']}}</ion-card-title> </div>
       
+      <div style="
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;">
         <ion-label>by user Aman</ion-label>
-      <ion-icon  style ="padding-left: 30px;" name="cloud-done-outline"></ion-icon>
+      <ion-icon  style ="padding-left: 30px;" name="cloud-done-outline"></ion-icon></div>
       
       
 
@@ -15,9 +20,9 @@
     
    
       <!-- <ion-radio-group>       -->
-        <div  *ngFor="let option of poll.pollAnswers;let j=index">
+        <div  *ngFor="let option of poll.pollAnswers;let j=index" class="answer">
           <!-- <ion-radio slot="start" color="{{option.color}}"></ion-radio> -->
-           <div>{{j+1}} {{option.optionName}} </div>
+           <div>{{j+1}}. {{option.optionName}} </div>
            <!-- <ion-note *ngIf="alreadyVoted"></ion-note> -->
         </div>
       <!-- </ion-radio-group> -->
