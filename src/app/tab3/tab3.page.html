@@ -1,3 +1,4 @@
+
 <ion-header [translucent]="true">
 
 </ion-header>
@@ -9,7 +10,7 @@
     </ion-card-header>
     
     <ion-card-content>
-      <ion-input placeholder="Custom input" class="custom"  [(ngModel)] ='question'></ion-input>
+      <ion-input placeholder="Enter your poll" class="custom"  [(ngModel)] ='question'></ion-input>
     </ion-card-content>
 
 
@@ -19,7 +20,7 @@
      
      <ion-card-content>
       <div *ngFor="let poll of userOption;let i=index" class="add_more">
-        <ion-input [placeholder]="poll.placeholder" [(ngModel)] ="poll.optionValue" class="custom"></ion-input>
+        <ion-input [placeholder]="poll.placeholder" [(ngModel)] ="poll.optionValue"class="custom"></ion-input>
         <ion-icon *ngIf="poll.isDeleted" (click)="deleted(poll,i)" name="trash-outline"></ion-icon>
       </div>
 
@@ -28,24 +29,14 @@
       <ion-button (click)="addMore()">Add More</ion-button>
      
     </div>
-      <!-- <div>
-        <ion-input placeholder="Option 1" class="custom"></ion-input>
-        <ion-icon name="trash-outline"></ion-icon>
-      </div> -->
-      <!-- <div>
-        <ion-input placeholder="Option 1" class="custom"></ion-input>
-        <ion-icon name="trash-outline"></ion-icon>
-      </div>
-      <div>
-        <ion-input placeholder="Option 1" class="custom"></ion-input>
-        <ion-icon name="trash-outline"></ion-icon>
-      </div> -->
+
      </ion-card-content>
      
 
   </ion-card> 
   <br>
-  <ion-button (click)="post()" color="secondary" expand="block" style="margin: 0 30px;">Post</ion-button>
+  <p style="color: red;text-align: center;" class="animate__animated animate__shakeX">{{error}}</p>
+  <ion-button color="secondary" (click) ="post()" expand="block" style="margin: 0 30px;">Post</ion-button>
 
 
  
