@@ -10,13 +10,15 @@
     <ion-card-content>
       <ion-radio-group>      
         <ion-item *ngFor="let option of poll.options;let j=index" (click)="polling(i,j)">
-          <ion-radio slot="start" color="{{option.color}}"></ion-radio>
-           <ion-label>{{option.choice}}
+          <ion-radio  [disabled]="checkVotedOrNot(i)"  slot="start" color="{{option.color}}"></ion-radio>
+           <ion-label>{{j+1}} {{option.choice}}
              <!-- <ion-progress-bar value="{{getValue(option.votes,poll.totalVotes)}}" color="{{option.color}}" *ngIf="alreadyVoted"></ion-progress-bar> -->
            </ion-label>
            <!-- <ion-note *ngIf="alreadyVoted">{{getPercent(option.votes,poll.totalVotes)}}</ion-note> -->
          </ion-item>
       </ion-radio-group>
+      <ion-button [disabled]="checkVotedOrNot(i)" *ngIf="checkIsVoted(i)" (click)="Vote(i)"  style="width: 100%;">{{checkVotedOrNot(i)?"Voted":"Vote"}}</ion-button>
+    
     </ion-card-content>
   </ion-card> 
 </ion-content>
