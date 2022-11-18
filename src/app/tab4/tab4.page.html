@@ -8,7 +8,7 @@
     </ion-card-header>
     <ion-card-content>
       <!-- <ion-radio-group>       -->
-        <ion-item  *ngFor="let option of poll.options;let j=index">
+        <ion-item class="animate__animated animate__slideInLeft"  *ngFor="let option of poll.options;let j=index">
           <!-- <ion-radio slot="start" color="{{option.color}}"></ion-radio> -->
            <ion-label>{{option.choice}}
             <!-- <ion-progress-bar value="{{getValue(option.votes,poll.totalVotes)}}" color="{{option.color}}"></ion-progress-bar>  -->
