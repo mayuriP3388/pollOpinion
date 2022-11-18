@@ -12,23 +12,21 @@ export class AdminDashboardPage implements OnInit {
   constructor(public pollservice: PollserviceService) { }
 
   ngOnInit() {
-    var userObject = localStorage.getItem('userObject');
-    let record;
-    if(userObject != undefined || userObject != null){
-      record = JSON.parse(userObject);
-      this.pollservice.userType = record;
-      this.showtab =  record.user['role']== 'admin' ? true: false;
-      this.userName =  record.user['name'];
-      console.log("record",record)
-    }
-    console.log("userObject",userObject)
+    
+      this.showtab =  this.pollservice.userType.user['role']== 'admin' ? true: false;
+      this.userName =  this.pollservice.userType.user['name'];
 
     this.getAllPolls();
   }
   getAllPolls(){
     let userid= this.pollservice.userType.user.userId;
-    let url ='/getAllPolls/'+userid;
-    this.pollservice.getApi(url).subscribe(response =>{
+    let url ='/getAllPolls/';
+    let sessionId = this.pollservice.userType.sessionId;
+    let params ={
+      "sessionId": sessionId,
+      "userId" :userid
+    }
+    this.pollservice.postApi(url,params).subscribe(response =>{
      
        console.log("respone poll",response);
        var res ={

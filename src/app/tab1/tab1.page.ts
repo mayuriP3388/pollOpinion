@@ -25,13 +25,6 @@ export class Tab1Page {
   }
   ngOnInit() {
 
-    this.pollserviceService.getApi('/getAllPolls/8').subscribe(data=>{
-
-    },err=>{
-      // alert(JSON.stringify(err));
-    })
-
-
 this.polls = [
     {
       question: "Which is better option to make mobile apps?",

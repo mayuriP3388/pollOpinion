@@ -11,6 +11,7 @@ import { PollserviceService } from '../pollservice.service';
 })
 export class LoginPage implements OnInit {
   loginForm :FormGroup;
+  errMSG ='';
   constructor(public modalCtrl: ModalController,
     public router: Router,
     public pollservice: PollserviceService) {
@@ -43,8 +44,14 @@ export class LoginPage implements OnInit {
       }
     
     this.pollservice.postApi(url,params).subscribe(response =>{
-        localStorage.setItem("userObject",JSON.stringify(response));
+      let res :any= response;
+      if(res.status == 'FAILED'){
+        this.errMSG =res.message;
+      }else{
+        this.pollservice.userType = response;
         this.router.navigate(['/admin-dashboard/tab1']);
+      }
+       
       },
     error =>{
 
