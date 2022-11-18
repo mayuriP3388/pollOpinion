@@ -101,12 +101,12 @@ export class Tab3Page {
         'options': content
       }
 
-      this.pollservice.postApi(url, postreq).subscribe(response => {
-        debugger
-      },
-        error => {
+      // this.pollservice.postApi(url, postreq).subscribe(response => {
+      //   debugger
+      // },
+      //   error => {
 
-        });
+      //   });
     }
 
     else {
