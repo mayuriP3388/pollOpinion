@@ -5,7 +5,7 @@ import { AdminDashboardPage } from './admin-dashboard.page';
 
 const routes: Routes = [
   {
-    path: 'admin-dashboard',
+    path: '',
     component: AdminDashboardPage,
     children: [
       {

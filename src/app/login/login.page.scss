@@ -15,3 +15,15 @@
 .forget a {
     font-size: small !important;
 }
+ion-input{
+    background-color: #374151;
+    margin-bottom: 40px;
+    border-radius: 5px;
+}
+.centerlogin{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 250px;
+}

@@ -42,6 +42,110 @@ this.polls = [
           color: "danger"
         }
       ]
+    },
+    {
+      question: "Which is better option to make mobile apps?",
+      totalVotes: 0,
+      options: [
+        {
+          choice: "Ionic",
+          votes: 0,
+          color: "primary"
+        },
+        {
+          choice: "Flutter",
+          votes: 0,
+          color: "success"
+        },
+        {
+          choice: "React Native",
+          votes: 0,
+          color: "warning"
+        },
+        {
+          choice: "Framework 7",
+          votes: 0,
+          color: "danger"
+        }
+      ]
+    },
+    {
+      question: "Which is better option to make mobile apps?",
+      totalVotes: 0,
+      options: [
+        {
+          choice: "Ionic",
+          votes: 0,
+          color: "primary"
+        },
+        {
+          choice: "Flutter",
+          votes: 0,
+          color: "success"
+        },
+        {
+          choice: "React Native",
+          votes: 0,
+          color: "warning"
+        },
+        {
+          choice: "Framework 7",
+          votes: 0,
+          color: "danger"
+        }
+      ]
+    },
+    {
+      question: "Which is better option to make mobile apps?",
+      totalVotes: 0,
+      options: [
+        {
+          choice: "Ionic",
+          votes: 0,
+          color: "primary"
+        },
+        {
+          choice: "Flutter",
+          votes: 0,
+          color: "success"
+        },
+        {
+          choice: "React Native",
+          votes: 0,
+          color: "warning"
+        },
+        {
+          choice: "Framework 7",
+          votes: 0,
+          color: "danger"
+        }
+      ]
+    },
+    {
+      question: "Which is better option to make mobile apps?",
+      totalVotes: 0,
+      options: [
+        {
+          choice: "Ionic",
+          votes: 0,
+          color: "primary"
+        },
+        {
+          choice: "Flutter",
+          votes: 0,
+          color: "success"
+        },
+        {
+          choice: "React Native",
+          votes: 0,
+          color: "warning"
+        },
+        {
+          choice: "Framework 7",
+          votes: 0,
+          color: "danger"
+        }
+      ]
     }
   ];
 
