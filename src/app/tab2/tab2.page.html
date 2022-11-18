@@ -2,20 +2,24 @@
 <ion-content [fullscreen]="true">
 
   <ion-card mode="ios" *ngFor="let poll of polls;let i=index">
-    <ion-card-header>
+    <ion-card-content>
       <ion-label>Question:</ion-label>
       <ion-card-title>{{poll.poll['question']}}</ion-card-title>
-      <ion-label>by user Aman</ion-label>
+      
+        <ion-label>by user Aman</ion-label>
+      <ion-icon  style ="padding-left: 30px;" name="cloud-done-outline"></ion-icon>
+      
+      
 
       <!-- <ion-card-subtitle>{{poll.totalVotes}} votes</ion-card-subtitle> -->
-    </ion-card-header>
-    <ion-card-content>
+    
+   
       <!-- <ion-radio-group>       -->
-        <ul  *ngFor="let option of poll.pollAnswers;let j=index">
+        <div  *ngFor="let option of poll.pollAnswers;let j=index">
           <!-- <ion-radio slot="start" color="{{option.color}}"></ion-radio> -->
-           <li>{{option.optionName}} </li>
+           <div>{{j+1}} {{option.optionName}} </div>
            <!-- <ion-note *ngIf="alreadyVoted"></ion-note> -->
-        </ul>
+        </div>
       <!-- </ion-radio-group> -->
     </ion-card-content>
   </ion-card>
