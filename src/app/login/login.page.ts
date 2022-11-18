@@ -21,6 +21,7 @@ export class LoginPage implements OnInit {
      }
 
   ngOnInit() {
+    localStorage.clear();
   }
 
   async dismiss() {

@@ -1,5 +1,6 @@
 .title {
     margin-bottom: 30px;
+    text-align: center;
 }
 
 .title h4 {
@@ -28,6 +29,9 @@ ion-input{
 }
 ion-item{
     --background:#333;
+    color: white;
 }
 
-
+.bg-class{
+    --background: linear-gradient(197deg, rgb(152 23 191) 0%, rgb(139 50 219) 13.5%, #3171e0 33.33%, rgb(99 39 129) 100%) !important;  
+}

@@ -1,17 +1,26 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-card mode="ios" *ngFor="let poll of polls;let i=index">
+    <ion-card-content>
+      <ion-label>Question:</ion-label>
+      <ion-card-title>{{poll.poll['question']}}</ion-card-title>
+      
+        <ion-label>by user Aman</ion-label>
+      <ion-icon  style ="padding-left: 30px;" name="cloud-done-outline"></ion-icon>
+      
+      
+
+      <!-- <ion-card-subtitle>{{poll.totalVotes}} votes</ion-card-subtitle> -->
+    
+   
+      <!-- <ion-radio-group>       -->
+        <div  *ngFor="let option of poll.pollAnswers;let j=index">
+          <!-- <ion-radio slot="start" color="{{option.color}}"></ion-radio> -->
+           <div>{{j+1}} {{option.optionName}} </div>
+           <!-- <ion-note *ngIf="alreadyVoted"></ion-note> -->
+        </div>
+      <!-- </ion-radio-group> -->
+    </ion-card-content>
+  </ion-card>
 </ion-content>
