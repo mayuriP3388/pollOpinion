@@ -119,7 +119,7 @@ export class Tab3Page {
     }
 
     else {
-      this.error ="Please Enter Required Field"
+      this.error ="Please Enter Required fields"
       // const toast = await this.toastController.create({
       //   message: 'Please enter required field',
       //   position: 'bottom',
