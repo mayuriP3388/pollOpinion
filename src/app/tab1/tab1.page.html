@@ -18,7 +18,7 @@
              <ion-label>{{j+1}} {{option.optionName}}
                <!-- <ion-progress-bar value="{{getValue(option.votes,poll.totalVotes)}}" color="{{option.color}}" *ngIf="alreadyVoted"></ion-progress-bar> -->
              </ion-label>
-             <ion-note  *ngIf="checkIsVoted(poll.poll.pollId)" >{{getPercent(option.votes,poll.poll.totalVotes)}}</ion-note>
+             <ion-note  *ngIf="checkVotedOrNot(poll.poll.pollId)" >{{getPercent(option.votes,poll.poll.totalVotes)}}</ion-note>
            </ion-item>
         </ion-radio-group>
         <ion-button [disabled]="checkVotedOrNot(poll.poll.pollId)" *ngIf="checkIsVoted(poll.poll.pollId)" (click)="Vote(poll.poll.pollId)"  style="width: 100%;">{{checkVotedOrNot(poll.poll.pollId)?"Voted":"Vote"}}</ion-button>
