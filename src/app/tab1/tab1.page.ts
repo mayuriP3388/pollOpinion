@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { type } from 'os';
 import { PollserviceService } from '../pollservice.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { PollserviceService } from '../pollservice.service';
 
 export class Tab1Page {
   alreadyVoted = false;
-  polls:any
+  polls:any = [];
   votes:any = [];
   user:any={};
   voted:any=[];
@@ -20,151 +21,43 @@ export class Tab1Page {
 
   ionViewDidEnter(){
     let userObject:any =localStorage.getItem('userObject');
-    this.user = JSON.parse(userObject);
+    this.user = this.pollserviceService.userType;
     this.votes = [];
+    this.getAllPolls();
   }
-  ngOnInit() {
 
-this.polls = [
-    {
-      question: "Which is better option to make mobile apps?",
-      totalVotes: 0,
-      options: [
-        {
-          choice: "Ionic",
-          votes: 0,
-          color: "primary"
-        },
-        {
-          choice: "Flutter",
-          votes: 0,
-          color: "success"
-        },
-        {
-          choice: "React Native",
-          votes: 0,
-          color: "warning"
-        },
-        {
-          choice: "Framework 7",
-          votes: 0,
-          color: "danger"
+ 
+    getAllPolls(){
+      let userid= this.pollserviceService.userType.user.userId;
+      let url ='/getAllPublishedPolls';
+      let sessionId = this.pollserviceService.userType.sessionId;
+      let params ={
+        "sessionId": sessionId,
+        "userId" :userid
+      }
+      this.pollserviceService.getApi(url).subscribe(response =>{
+        let res:any = response;
+         this.polls = res.publishedPolls;
+        for(let i=0;i<this.polls.length;i++){
+          let totalVotes = 0;
+          for(let j=0;j<this.polls[i].pollAnswers.length;j++){
+            totalVotes += this.polls[i].pollAnswers[j].votes;
+          }
+          this.polls[i].poll.totalVotes = totalVotes;
         }
-      ]
-    },
-    {
-      question: "Which is better option to make mobile apps?",
-      totalVotes: 0,
-      options: [
-        {
-          choice: "Ionic",
-          votes: 0,
-          color: "primary"
-        },
-        {
-          choice: "Flutter",
-          votes: 0,
-          color: "success"
-        },
-        {
-          choice: "React Native",
-          votes: 0,
-          color: "warning"
-        },
-        {
-          choice: "Framework 7",
-          votes: 0,
-          color: "danger"
-        }
-      ]
-    },
-    {
-      question: "Which is better option to make mobile apps?",
-      totalVotes: 0,
-      options: [
-        {
-          choice: "Ionic",
-          votes: 0,
-          color: "primary"
-        },
-        {
-          choice: "Flutter",
-          votes: 0,
-          color: "success"
-        },
-        {
-          choice: "React Native",
-          votes: 0,
-          color: "warning"
-        },
-        {
-          choice: "Framework 7",
-          votes: 0,
-          color: "danger"
-        }
-      ]
-    },
-    {
-      question: "Which is better option to make mobile apps?",
-      totalVotes: 0,
-      options: [
-        {
-          choice: "Ionic",
-          votes: 0,
-          color: "primary"
-        },
-        {
-          choice: "Flutter",
-          votes: 0,
-          color: "success"
-        },
-        {
-          choice: "React Native",
-          votes: 0,
-          color: "warning"
-        },
-        {
-          choice: "Framework 7",
-          votes: 0,
-          color: "danger"
-        }
-      ]
-    },
-    {
-      question: "Which is better option to make mobile apps?",
-      totalVotes: 0,
-      options: [
-        {
-          choice: "Ionic",
-          votes: 0,
-          color: "primary"
-        },
-        {
-          choice: "Flutter",
-          votes: 0,
-          color: "success"
-        },
-        {
-          choice: "React Native",
-          votes: 0,
-          color: "warning"
-        },
-        {
-          choice: "Framework 7",
-          votes: 0,
-          color: "danger"
-        }
-      ]
+         console.log(this.polls,'pol');
+      });
     }
-  ];
+
+  ngOnInit() {
 
   }
   
 
   checkIsVoted(i:any){
     console.log(this.votes);
-    let ind =this.votes.indexOf(i)
-    if(ind==-1){
+    let ind =this.votes[i];
+    if(typeof ind ==='undefined' || ind ==null){
       return false
     }
     return true;
@@ -180,11 +73,11 @@ this.polls = [
   }
  
   polling(i:any, j:any) {
-    let ind =this.voted.indexOf(i)
+    let ind =this.voted.indexOf(j)
     if(ind !=-1){
       return;
     }
-    this.votes.push(i); 
+    this.votes[j]=i; 
 
   
     this.alreadyVoted = true;
@@ -209,13 +102,16 @@ this.polls = [
       return Math.round(value) + "%";
      }
 
-     Vote(i:any){
-      // alert(this.user.user.userId);
-      this.voted.push(i);
+     Vote(pollId:any){
+      console.log(this.user);
+      this.voted.push(pollId);
+      let sessionId = this.pollserviceService.userType.sessionId;
+      
       let param:any = {
         "userId" : this.user.user.userId,
-        "pollId" : "4",
-        "pollAnswerId" : "10"
+        "pollId" : pollId,
+        "pollAnswerId" :this.votes[pollId],
+        "sessionId": sessionId,
       }
       this.pollserviceService.postApi('/addVote',param).subscribe(data=>{
   
