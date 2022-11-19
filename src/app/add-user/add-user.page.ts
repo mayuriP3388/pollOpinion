@@ -10,6 +10,7 @@ import { PollserviceService } from '../pollservice.service';
 })
 export class AddUserPage implements OnInit {
   addform: FormGroup ;
+  errMSG ='';
  constructor(public formBuilder: FormBuilder,
   public router: Router,
   public pollservice: PollserviceService) { 
@@ -37,6 +38,21 @@ export class AddUserPage implements OnInit {
     if (this.addform.invalid) {
     
       console.log('Please provide all the required values!')
+      if(this.addform.value.email == '' || this.addform.value.password == '' || this.addform.value.username ==''){
+        this.errMSG ='Please enter the required values!'
+      }else if(this.addform.value.username == ''){
+        this.errMSG ='Please enter username!'
+      }else if(this.addform.value.email == ''){
+        this.errMSG ='Please enter email!'
+      }else if(this.addform.value.password == ''){
+        this.errMSG ='Please enter password!'
+      }else if(this.addform.value.email != '') {
+        let emailPattern = /^[A-Za-z0-9]+([._-]{0,1}[A-Za-z0-9])+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+        if(!emailPattern.test(this.addform.value.email))
+          this.errMSG ='Enter Valid Email';
+      }else{
+        this.errMSG ='';
+      }
       // return false;
     } else {
       // this.pollservice.name= this.addform.value.name;
