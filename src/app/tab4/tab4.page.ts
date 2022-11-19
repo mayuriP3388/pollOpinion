@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PollserviceService } from '../pollservice.service';
 
 @Component({
   selector: 'app-tab4',
@@ -9,13 +10,13 @@ export class Tab4Page implements OnInit {
   polls:any;
   alreadyVoted = false;
   percen:Number = 0
-  constructor() { }
+  constructor(public pollservice: PollserviceService,) { }
 
   ngOnInit() {
    
 
 
-  
+    this.getAllPolls()
 
 
   }
@@ -116,5 +117,23 @@ export class Tab4Page implements OnInit {
       let value = (votes / totavotes) ;
      return value;
      }
+
+     getAllPolls(){
+      debugger
+      let userid= this.pollservice.userType.user.userId;
+      let url ='/getAllPolls/';
+      let sessionId = this.pollservice.userType.sessionId;
+      let params ={
+        "sessionId": sessionId,
+        "userId" :userid
+      }
+      this.pollservice.postApi(url,params).subscribe(response =>{
+       
+         console.log("respone poll",response);
+        },
+        error =>{
+    
+        });
+      }
 
 }

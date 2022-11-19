@@ -1,8 +1,41 @@
-
 <ion-content [fullscreen]="true">
+<ion-card>
+  <ion-item  *ngFor="let poll of polls;let i=index">
+    <!-- <ion-label> -->
+    <div style="display: flex; flex-direction: column;padding: 10px 5px;">
+      <div style="display: flex; justify-content:space-between; align-items: center;">
+        <div style="font: 12px;">by {{poll.name}}</div>
+        <div >
+          <ion-button size="small" color="success" (click)="approve(poll)">Approve</ion-button>
+        </div>
+      </div>
+      <div style="display: flex;">
+        <!-- <ion-label style="padding-right: 10px;">Question:</ion-label> -->
+        {{poll.poll['question']}}
+      </div>
+      <div style="flex-direction:column;">
+        <div *ngFor="let option of poll.pollAnswers;let j=index" class="answer">
+          <div>{{j+1}}. {{option.optionName}} </div>
+        </div>
+      </div>
+    
+    </div>
 
-  <ion-card mode="ios" *ngFor="let poll of polls;let i=index">
-    <ion-card-content>
+   
+
+    <!-- </ion-label> -->
+  </ion-item>
+  
+</ion-card>
+  <!-- <ion-list *ngFor="let poll of polls;let i=index"> -->
+  <!-- <ion-card mode="ios" > -->
+  <!-- <div style="display: flex;">
+          <ion-label style="padding-right: 10px;">Question:</ion-label>
+            {{poll.poll['question']}}</div> -->
+  <!-- </ion-card> -->
+
+  <!-- </ion-list> -->
+  <!-- <ion-card-content>
       <div style="display: flex;">
       <ion-label style="padding-right: 10px;">Question:</ion-label>
       <ion-card-title>  {{poll.poll['question']}}</ion-card-title> </div>
@@ -16,16 +49,16 @@
       
       
 
-      <!-- <ion-card-subtitle>{{poll.totalVotes}} votes</ion-card-subtitle> -->
-    
-   
-      <!-- <ion-radio-group>       -->
-        <div  *ngFor="let option of poll.pollAnswers;let j=index" class="answer">
-          <!-- <ion-radio slot="start" color="{{option.color}}"></ion-radio> -->
-           <div>{{j+1}}. {{option.optionName}} </div>
-           <!-- <ion-note *ngIf="alreadyVoted"></ion-note> -->
-        </div>
-      <!-- </ion-radio-group> -->
-    </ion-card-content>
-  </ion-card>
+      <ion-card-subtitle>{{poll.totalVotes}} votes</ion-card-subtitle> -->
+
+
+  <!-- <ion-radio-group>       -->
+  <!-- <div  *ngFor="let option of poll.pollAnswers;let j=index" class="answer"> -->
+  <!-- <ion-radio slot="start" color="{{option.color}}"></ion-radio> -->
+  <!-- <div>{{j+1}}. {{option.optionName}} </div> -->
+  <!-- <ion-note *ngIf="alreadyVoted"></ion-note> -->
+  <!-- </div> -->
+  <!-- </ion-radio-group> -->
+  <!-- </ion-card-content> --> 
+  <!-- </ion-card> -->
 </ion-content>

@@ -15,15 +15,17 @@
             </div>
             <form [formGroup]="loginForm"  (ngSubmit)="login()">
 
-              <ion-input placeholder="Username" type ="email"  formControlName ="email" class="primary-input animate__animated animate__flipInX"></ion-input>
+              <ion-input placeholder="Email" type ="email"  formControlName ="email" class="primary-input animate__animated animate__flipInX"></ion-input>
+              
               <ion-input placeholder="Password" type="password"  formControlName ="password" class="primary-input animate__animated animate__flipInX"></ion-input>
 
               <div class="ion-margin-top ion-text-right forget">
                 <!-- <a>Forgot Password?</a> -->
               </div>
-
-              <div class="ion-margin-top animate__animated animate__zoomIn">
-                <ion-button class="bg-class" expand="block" type="submit" [disabled]="loginForm.invalid">Sign in</ion-button>
+              
+              <span class ="error" *ngIf ="errMSG !=''">{{errMSG}}</span>
+                <div class="ion-margin-top animate__animated animate__zoomIn">
+                <ion-button class="bg-class" expand="block" type="submit" >Sign in</ion-button>
               </div>
           </form>
             <div class="ion-margin-top ion-text-center">

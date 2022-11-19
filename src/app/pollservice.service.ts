@@ -7,6 +7,7 @@ import { catchError, throwError } from 'rxjs';
 })
 export class PollserviceService {
   userType: any ;
+  unpublishList =[];
   baseURl ='http://hacathanprafulla-env.eba-kgp8wwme.ap-south-1.elasticbeanstalk.com:80';
   constructor(private http: HttpClient) { }
 
