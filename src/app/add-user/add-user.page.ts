@@ -35,7 +35,7 @@ export class AddUserPage implements OnInit {
   }
   proceed(){
     console.log(this.addform.value)
-    if (this.addform.invalid) {
+    if (this.addform.status == "INVALID") {
     
       console.log('Please provide all the required values!')
       if(this.addform.value.email == '' || this.addform.value.password == '' || this.addform.value.username ==''){

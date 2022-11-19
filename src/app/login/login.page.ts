@@ -36,7 +36,7 @@ export class LoginPage implements OnInit {
   login(){
     let url ='/login';
 
-    if (this.loginForm.invalid) {
+    if (this.loginForm.status == "INVALID") {
     
       console.log('Please provide all the required values!',this.loginForm);
       if(this.loginForm.value.email == '' && this.loginForm.value.password == ''){
