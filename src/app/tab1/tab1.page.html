@@ -9,7 +9,7 @@
     </ion-card-header>
     <ion-card-content>
       <ion-radio-group>      
-        <ion-item *ngFor="let option of poll.pollAnswers;let j=index" (click)="polling(option.pollAnswerId, option.pollId)">
+        <ion-item *ngFor="let option of poll.pollAnswers;let j=index" (click)="polling(option.pollAnswerId, option.pollId)" class="animate__animated animate__fadeIn">
           <ion-radio  [disabled]="checkVotedOrNot(i)"  slot="start" color="{{option.color}}"></ion-radio>
            <ion-label>{{j+1}} {{option.optionName}}
              <!-- <ion-progress-bar value="{{getValue(option.votes,poll.totalVotes)}}" color="{{option.color}}" *ngIf="alreadyVoted"></ion-progress-bar> -->
