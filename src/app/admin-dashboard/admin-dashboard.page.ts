@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PollserviceService } from '../pollservice.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { PollserviceService } from '../pollservice.service';
 export class AdminDashboardPage implements OnInit {
   showtab =true;
   userName ="";
-  constructor(public pollservice: PollserviceService) { }
+  constructor(public pollservice: PollserviceService,
+    public router: Router) { }
 
   ngOnInit() {
     
@@ -20,84 +22,36 @@ export class AdminDashboardPage implements OnInit {
   }
   getAllPolls(){
     let userid= this.pollservice.userType.user.userId;
-    let url ='/getAllPolls/';
+    let url ='/getAllPublishedPolls';
     let sessionId = this.pollservice.userType.sessionId;
-    let params = {
-      "sessionId": sessionId,
-      "userId" :userid
-    }
-    this.pollservice.postApi(url,params).subscribe(response =>{
+   
+    this.pollservice.postApi(url,{}).subscribe(response =>{
      
        console.log("respone poll",response);
        let res1 :any= response;
-       this.pollservice.unpublishList= res1.unplishedPolls;
-       var res ={
-        "publishedPolls": [
-            {
-                "poll": {
-                    "pollId": 1,
-                    "userId": 1,
-                    "question": "your favourite song",
-                    "createdAt": "2022-11-18T16:01:07.000+00:00",
-                    "published": true
-                },
-                "pollAnswers": [
-                    {
-                        "pollAnswerId": 1,
-                        "pollId": 1,
-                        "optionName": "dil chahat hai",
-                        "votes": 0
-                    },
-                    {
-                        "pollAnswerId": 2,
-                        "pollId": 1,
-                        "optionName": "kabhi kabhi",
-                        "votes": 1
-                    },
-                    {
-                        "pollAnswerId": 3,
-                        "pollId": 1,
-                        "optionName": "kal ho naa ho",
-                        "votes": 0
-                    }
-                ]
-            },
-            {
-                "poll": {
-                    "pollId": 2,
-                    "userId": 2,
-                    "question": "your favourite colour",
-                    "createdAt": "2022-11-18T16:06:16.000+00:00",
-                    "published": true
-                },
-                "pollAnswers": [
-                    {
-                        "pollAnswerId": 4,
-                        "pollId": 2,
-                        "optionName": "red",
-                        "votes": 0
-                    },
-                    {
-                        "pollAnswerId": 5,
-                        "pollId": 2,
-                        "optionName": "yellow",
-                        "votes": 1
-                    },
-                    {
-                        "pollAnswerId": 6,
-                        "pollId": 2,
-                        "optionName": "black",
-                        "votes": 0
-                    }
-                ]
-            }
-        ],
-        "unplishedPolls": null
-    }
+    //    this.pollservice.unpublishList= res1.unplishedPolls;
+       
       },
     error =>{
 
     });
+  }
+
+  logout(){
+    let url = "/logout";
+    let param = {
+        "sessionId":this.pollservice.userType.sessionId,
+        "userId": this.pollservice.userType.user.userId
+    }
+    this.pollservice.postApi(url,param).subscribe(response =>{
+        let res1 :any= response;
+        this.pollservice.userType =null;
+        this.router.navigate(['login']);
+       },
+     error =>{
+ 
+     });
+
   }
 
 }
