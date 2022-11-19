@@ -13,87 +13,14 @@ export class Tab4Page implements OnInit {
   constructor(public pollservice: PollserviceService,) { }
 
   ngOnInit() {
-   
-
-
-    this.getAllPolls()
-
-
+    
   }
   ionViewWillEnter(){
-    this.polls =[
-      {
-        question: "Which is better option to make mobile apps?",
-        totalVotes: 27,
-        options: [
-          {
-            choice: "Ionic",
-            votes: 10,
-            color: "primary",
-            percentage:0
-          },
-          {
-            choice: "Flutter",
-            votes: 9,
-            color: "success",
-            percentage:0
-          },
-          {
-            choice: "React Native",
-            votes: 5,
-            color: "warning",
-            percentage:0
-          },
-          {
-            choice: "Framework 7",
-            votes: 3,
-            color: "danger",
-            percentage:0
-          }
-        ]
-      },
-      {
-        question: "Which is better option to make mobile apps?",
-        totalVotes: 27,
-        options: [
-          {
-            choice: "Ionic",
-            votes: 10,
-            color: "primary",
-            percentage:0
-          },
-          {
-            choice: "Flutter",
-            votes: 9,
-            color: "success",
-            percentage:0
-          },
-          {
-            choice: "React Native",
-            votes: 5,
-            color: "warning",
-            percentage:0
-          },
-          {
-            choice: "Framework 7",
-            votes: 3,
-            color: "danger",
-            percentage:0
-          }
-        ]
-      }
-    ];
-
-      this.getPercent()
+    this.polls =[];
+    this.getAllPolls()
   }
-  // polling(i:any, j:any) {
-  //   this.alreadyVoted = true;
-  //   this.polls[i]['options'][j]['votes'] = this.polls[i]['options'][j]['votes'] + 1;
-  //   this.polls[i]['totalVotes'] = this.polls[i]['totalVotes'] + 1;
-  //    }
-   
+
     getValue(i:any, j:any) {
-     //let value = i / j;
 
     let value = this.polls[i].options[j].percentage
      console.log(value)
@@ -114,26 +41,77 @@ export class Tab4Page implements OnInit {
      }
 
      calculateper(votes:any,totavotes:any){
-      let value = (votes / totavotes) ;
-     return value;
+      if(totavotes > 0){
+        let value = (votes / totavotes) ;
+        return value;
+      }else{
+        return 0
+      }
+      
      }
 
      getAllPolls(){
-      debugger
       let userid= this.pollservice.userType.user.userId;
-      let url ='/getAllPolls/';
+      let url ='/getAllPollsForAUser/';
       let sessionId = this.pollservice.userType.sessionId;
       let params ={
         "sessionId": sessionId,
         "userId" :userid
       }
       this.pollservice.postApi(url,params).subscribe(response =>{
-       
+       var res:any = response
+       var publishRes = res.userPollList
+       if(publishRes.length){
+        this.calculateTotalVotes(publishRes)
+          
+       }else{
+        console.log('no record found')
+       }
+
          console.log("respone poll",response);
         },
         error =>{
     
         });
       }
+
+  calculateTotalVotes(publishRes: any) {
+    for (let i = 0; i < publishRes.length; i++) {
+      var totalVotes = 0
+      var choice = ''
+      var votes = 0
+      var answerArray = []
+      var color = 'primary'
+      for(let j=0;j< publishRes[i].pollAnswers.length;j++){
+        totalVotes = publishRes[i].pollAnswers[j].votes + totalVotes
+        choice = publishRes[i].pollAnswers[j].optionName
+        votes = publishRes[i].pollAnswers[j].votes
+        switch (j){
+          case 0:
+            color = 'primary'
+            break;
+
+            case 1:
+              color = 'success'
+            break;
+            case 2:
+              color = 'warning'
+            break;
+            case 3:
+              color = 'danger'
+            break;
+            default:
+              color ='primary'
+        }
+        answerArray.push({ choice: choice,votes: votes,color:color})
+
+        
+      }
+       this.polls.push({totalVotes:totalVotes,options:answerArray,question:publishRes[i].poll.question})
+      
+      }
+      this.getPercent()
+    console.log(this.polls)
+  }
 
 }

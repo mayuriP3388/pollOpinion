@@ -15,7 +15,7 @@ ion-input.custom {
      justify-content: space-between;
      margin-bottom: 20px;
      ion-input{
-      min-width: 300px;
+    //  min-width: 300px;
       max-width: 300px;
      }
   } 
@@ -25,6 +25,7 @@ ion-input.custom {
     justify-content: space-between;
   }
   ion-icon{
-    color: #f14949c9;
+    color: white;
     font-size: 25px;
+    margin: 0px 0px 0px 2px;
   }

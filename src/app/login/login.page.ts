@@ -38,7 +38,18 @@ export class LoginPage implements OnInit {
 
     if (this.loginForm.invalid) {
     
-      console.log('Please provide all the required values!')
+      console.log('Please provide all the required values!',this.loginForm);
+      if(this.loginForm.value.email == '' && this.loginForm.value.password == ''){
+        this.errMSG ='Please enter the required values!'
+      }else if(this.loginForm.value.email == ''){
+        this.errMSG ='Please enter email!'
+      }else if(this.loginForm.value.password == ''){
+        this.errMSG ='Please enter password!'
+      }else if(this.loginForm.value.email != '') {
+        let emailPattern = /^[A-Za-z0-9]+([._-]{0,1}[A-Za-z0-9])+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+        if(!emailPattern.test(this.loginForm.value.email))
+          this.errMSG ='Enter Valid Email';
+      }
       // return false;
     } else {
       

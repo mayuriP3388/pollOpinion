@@ -16,17 +16,18 @@
         <!-- <p>Wecome back, You've been missed!</p> -->
       </div>
 
-      <ion-input placeholder="Username" formControlName ="username" type ="text" class="primary-input animate__animated animate__flipInX"></ion-input>
-      <ion-input placeholder="email" type ="email" formControlName ="email" class="primary-input animate__animated animate__flipInX"></ion-input>
-      <ion-input placeholder="Password" type="password" formControlName ="password" class="primary-input animate__animated animate__flipInX"></ion-input>
+      <ion-input placeholder="Username*" formControlName ="username" type ="text" class="primary-input animate__animated animate__flipInX"></ion-input>
+      <ion-input placeholder="Email*" type ="email" formControlName ="email" class="primary-input animate__animated animate__flipInX"></ion-input>
+      <ion-input placeholder="Password*" type="password" formControlName ="password" class="primary-input animate__animated animate__flipInX"></ion-input>
       <ion-item lines="none">
         <ion-checkbox slot="start" formControlName ="admin"></ion-checkbox>
         <ion-label>Admin</ion-label>
       </ion-item>
+      <span class ="error" *ngIf ="errMSG !=''">{{errMSG}}</span>
       <div class="ion-margin-top">
-        <ion-button expand="block"  type="submit" [disabled]="addform.invalid" class="bg-class title animate__animated animate__zoomIn">Register</ion-button>
+        <ion-button expand="block"  type="submit" class="bg-class title animate__animated animate__zoomIn">Register</ion-button>
       </div>
-
+     
       <div class="ion-margin-top ion-text-center">
         <a (click)="signUP()">Sign In </a>
       </div>
