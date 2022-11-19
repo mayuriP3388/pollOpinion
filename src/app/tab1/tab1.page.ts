@@ -45,6 +45,8 @@ export class Tab1Page {
           }
           this.polls[i].poll.totalVotes = totalVotes;
         }
+        this.pollserviceService.active_polls = this.polls.length;
+
          console.log(this.polls,'pol');
       });
     }

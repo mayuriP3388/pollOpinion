@@ -9,6 +9,8 @@ export class PollserviceService {
   userType: any ;
   unpublishList =[];
   baseURl ='http://hacathanprafulla-env.eba-kgp8wwme.ap-south-1.elasticbeanstalk.com:80';
+  active_polls:any = 0;
+
   constructor(private http: HttpClient) { }
 
   postApi(url:any,param:any){
