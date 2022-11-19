@@ -50,9 +50,14 @@ h2{
     color: #fff !important;
   }
 
-  custom-alert{
-    color:black  !important;
+  .custom-alert{
+    .alert-wrapper{
+      h2{
+        color:#000 !important;
+      }
+    }
   }
+  
 
   ion-card-title{
     font-size: 18px;

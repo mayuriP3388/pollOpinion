@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true">
 <div *ngIf="polls.length==0">
-    <h2 style="text-align:center;top:40%">No records found!</h2>
+  <p style="color: white;text-align: center;" class="animate__animated animate__shakeX">No records found!</p>
   </div>
   <ion-card style="--background: transparent !important;" >
     <ion-item  *ngFor="let poll of polls;let i=index" style="margin: 0 0 12px;border-radius: 10px;" class="animate__animated animate__flipInX">
@@ -19,7 +19,7 @@
       </div>
       <div style="display: flex; justify-content:space-between; align-items: center;">
         <div style="font: 12px;">by {{poll.name}}</div>
-        <div style="padding-left:150px">
+        <div>
           <ion-button size="small" slot="end" color="primary" (click)="approve(poll,i)" *ngIf ="!poll.poll.published">Publish</ion-button>
           <ion-button size="small" slot="end" color="success" (click)="unpublish(poll,i)" *ngIf ="poll.poll.published">Unpublish</ion-button>
         </div>

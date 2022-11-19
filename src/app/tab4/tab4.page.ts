@@ -67,7 +67,7 @@ export class Tab4Page implements OnInit {
         this.calculateTotalVotes(publishRes)
           
        }else{
-        this.error ="No Record Found"
+        this.error ="No records found!"
         console.log('no record found')
        }
 
