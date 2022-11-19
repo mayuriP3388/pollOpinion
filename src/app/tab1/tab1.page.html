@@ -6,7 +6,7 @@
     <h2 style="text-align:center;top:40%">No records found!</h2>
   </div>
   <div *ngIf="polls.length > 0">
-    <ion-card mode="ios" *ngFor="let poll of polls;let i=index">
+    <ion-card mode="ios" *ngFor="let poll of polls;let i=index" class="animate__animated animate__fadeIn">
       <ion-card-header>    
         <ion-card-title>{{poll.poll.question}}</ion-card-title>  
         <ion-card-subtitle>{{poll.poll.totalVotes}} votes</ion-card-subtitle>
