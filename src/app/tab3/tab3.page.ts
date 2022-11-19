@@ -12,6 +12,8 @@ export class Tab3Page {
   userOption: any
   isDisable:boolean = false
   error:any;
+  isSpinner:boolean=false
+  isFabBtn:boolean=false
   constructor(public pollservice: PollserviceService, public toastController:ToastController,) { }
   ngOnInit() {
 
@@ -36,6 +38,7 @@ export class Tab3Page {
   }
   addMore() {
     if (this.userOption.length <= 3) {
+      debugger
       this.userOption.push({ id: this.userOption.length + 1, optionValue: '', isVisible: true, isDeleted: true, placeholder: 'Option ' + (this.userOption.length + 1), isValid: false })
       console.log(this.userOption)
     } else {
@@ -86,7 +89,7 @@ export class Tab3Page {
         content.push(this.userOption[i].optionValue)
       }
       
- 
+      
       let userid= this.pollservice.userType.user.userId;
       let sessionId = this.pollservice.userType.sessionId;
       let url = '/addPoll'
@@ -99,10 +102,12 @@ export class Tab3Page {
 
       this.pollservice.postApi(url, postreq).subscribe(async response => {
         console.log(response)
-          const toast = await this.toastController.create({
+        this.isFabBtn = true
+        this.clear()
+        const toast = await this.toastController.create({
         message: 'Your Poll is Pending for Approval',
         position: 'bottom',
-        duration: 3000,
+        duration: 5000,
       });
       toast.present();
       return
@@ -114,7 +119,7 @@ export class Tab3Page {
     }
 
     else {
-      this.error ="'Please Enter Required Field'"
+      this.error ="Please Enter Required Field"
       // const toast = await this.toastController.create({
       //   message: 'Please enter required field',
       //   position: 'bottom',
@@ -124,6 +129,28 @@ export class Tab3Page {
       // return
     }
 
+  }
+
+  clear(){
+    this.question =''
+    this.userOption = [
+      {
+        id: 1,
+        optionValue: '',
+        isVisible: true,
+        isDeleted: false,
+        placeholder: 'Option 1',
+        isValid: false
+      },
+      {
+        id: 2,
+        optionValue: '',
+        isVisible: true,
+        isDeleted: false,
+        placeholder: 'Option 2',
+        isValid: false
+      },
+    ]
   }
 
 }

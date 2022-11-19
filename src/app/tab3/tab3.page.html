@@ -5,7 +5,7 @@
 
 <ion-content [fullscreen]="true">
   <ion-card mode="ios">
-    <ion-card-header>    
+    <ion-card-header style="color:white">    
      Poll question
     </ion-card-header>
     
@@ -14,7 +14,7 @@
     </ion-card-content>
 
 
-    <ion-card-header>    
+    <ion-card-header style="color:white;display: flex;flex-flow: row;justify-content: space-between;">    
       Option <span>Max 4</span>
      </ion-card-header>
      
@@ -38,6 +38,21 @@
   <p style="color: red;text-align: center;" class="animate__animated animate__shakeX">{{error}}</p>
   <ion-button color="secondary" (click) ="post()" expand="block" style="margin: 0 30px;">Post</ion-button>
 
-
+  <!-- <ion-fab slot="fixed" *ngIf="isFabBtn" (click) ="clear()" vertical="bottom" horizontal="end"> Add More Poll
+    <ion-fab-button>
+      <ion-icon name="chevron-up-circle"></ion-icon>
+    </ion-fab-button> -->
+    <!-- <ion-fab-list side="top">
+      <ion-fab-button>
+        <ion-icon name="document"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button>
+        <ion-icon name="color-palette"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button>
+        <ion-icon name="globe"></ion-icon>
+      </ion-fab-button> -->
+    <!-- </ion-fab-list> -->
+  <!-- </ion-fab> -->
  
 </ion-content>

@@ -1,10 +1,11 @@
 
 
 <ion-content>
+
   <ion-card mode="ios" *ngFor="let poll of polls;let i=index">
     <ion-card-header>
       <ion-card-title>{{poll.question}}</ion-card-title>
-      <!-- <ion-card-subtitle>{{poll.totalVotes}} votes</ion-card-subtitle> -->
+     <ion-card-subtitle>{{poll.totalVotes}} votes</ion-card-subtitle> 
     </ion-card-header>
     <ion-card-content>
       <!-- <ion-radio-group>       -->
@@ -14,7 +15,8 @@
             <!-- <ion-progress-bar value="{{getValue(option.votes,poll.totalVotes)}}" color="{{option.color}}"></ion-progress-bar>  -->
             <ion-progress-bar [value]="option.percentage" color="{{option.color}}"></ion-progress-bar> 
            </ion-label>
-           <ion-note>{{option.percentage*100  | number : '1.0-2'}}%</ion-note>
+           <ion-note *ngIf="option.percentage != 0">{{option.percentage*100  | number : '1.0-2'}}%</ion-note>
+           <ion-note *ngIf="option.percentage == 0">0%</ion-note>
          </ion-item>
       <!-- </ion-radio-group> -->
     </ion-card-content>
