@@ -4,20 +4,20 @@
 <ion-content [fullscreen]="true">
   <ion-card mode="ios" *ngFor="let poll of polls;let i=index">
     <ion-card-header>    
-      <ion-card-title>{{poll.question}}</ion-card-title>  
-      <ion-card-subtitle>{{poll.totalVotes}} votes</ion-card-subtitle>
+      <ion-card-title>{{poll.poll.question}}</ion-card-title>  
+      <ion-card-subtitle>{{poll.poll.totalVotes}} votes</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
       <ion-radio-group>      
-        <ion-item *ngFor="let option of poll.options;let j=index" (click)="polling(i,j)">
+        <ion-item *ngFor="let option of poll.pollAnswers;let j=index" (click)="polling(option.pollAnswerId, option.pollId)">
           <ion-radio  [disabled]="checkVotedOrNot(i)"  slot="start" color="{{option.color}}"></ion-radio>
-           <ion-label>{{j+1}} {{option.choice}}
+           <ion-label>{{j+1}} {{option.optionName}}
              <!-- <ion-progress-bar value="{{getValue(option.votes,poll.totalVotes)}}" color="{{option.color}}" *ngIf="alreadyVoted"></ion-progress-bar> -->
            </ion-label>
-           <ion-note *ngIf="alreadyVoted">{{getPercent(option.votes,poll.totalVotes)}}</ion-note>
+           <ion-note>{{getPercent(option.votes,poll.poll.totalVotes)}}</ion-note>
          </ion-item>
       </ion-radio-group>
-      <ion-button [disabled]="checkVotedOrNot(i)" *ngIf="checkIsVoted(i)" (click)="Vote(i)"  style="width: 100%;">{{checkVotedOrNot(i)?"Voted":"Vote"}}</ion-button>
+      <ion-button [disabled]="checkVotedOrNot(poll.poll.pollId)" *ngIf="checkIsVoted(poll.poll.pollId)" (click)="Vote(poll.poll.pollId)"  style="width: 100%;">{{checkVotedOrNot(poll.poll.pollId)?"Voted":"Vote"}}</ion-button>
     
     </ion-card-content>
   </ion-card> 
