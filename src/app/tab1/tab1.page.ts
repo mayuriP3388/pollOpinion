@@ -72,7 +72,7 @@ export class Tab1Page {
     return true;
   }
  
-  polling(i:any, j:any) {
+  polling(i:any, j:any,index:any,ans_index:any) {
     let ind =this.voted.indexOf(j)
     if(ind !=-1){
       return;
@@ -81,9 +81,10 @@ export class Tab1Page {
 
   
     this.alreadyVoted = true;
-    this.polls[i]['options'][j]['votes'] = this.polls[i]['options'][j]      
+    this.polls[index]['options'][ans_index]['votes'] = this.polls[index]['options'][ans_index]      
     ['votes'] + 1;
-    this.polls[i]['totalVotes'] = this.polls[i]['totalVotes'] + 1;
+    this.polls[index]['totalVotes'] = this.polls[index]['totalVotes'] + 1;
+    this.polls[index].poll.totalVotes = this.polls[index].poll.totalVotes  + 1;
 
     
 

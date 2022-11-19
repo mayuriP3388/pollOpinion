@@ -9,12 +9,12 @@
     </ion-card-header>
     <ion-card-content>
       <ion-radio-group>      
-        <ion-item *ngFor="let option of poll.pollAnswers;let j=index" (click)="polling(option.pollAnswerId, option.pollId)">
-          <ion-radio  [disabled]="checkVotedOrNot(i)"  slot="start" color="{{option.color}}"></ion-radio>
+        <ion-item *ngFor="let option of poll.pollAnswers;let j=index" (click)="polling(option.pollAnswerId, option.pollId,i,j)">
+          <ion-radio  [disabled]="checkVotedOrNot(poll.poll.pollId)"  slot="start" color="{{option.color}}"></ion-radio>
            <ion-label>{{j+1}} {{option.optionName}}
              <!-- <ion-progress-bar value="{{getValue(option.votes,poll.totalVotes)}}" color="{{option.color}}" *ngIf="alreadyVoted"></ion-progress-bar> -->
            </ion-label>
-           <ion-note>{{getPercent(option.votes,poll.poll.totalVotes)}}</ion-note>
+           <ion-note  *ngIf="checkIsVoted(poll.poll.pollId)" >{{getPercent(option.votes,poll.poll.totalVotes)}}</ion-note>
          </ion-item>
       </ion-radio-group>
       <ion-button [disabled]="checkVotedOrNot(poll.poll.pollId)" *ngIf="checkIsVoted(poll.poll.pollId)" (click)="Vote(poll.poll.pollId)"  style="width: 100%;">{{checkVotedOrNot(poll.poll.pollId)?"Voted":"Vote"}}</ion-button>
