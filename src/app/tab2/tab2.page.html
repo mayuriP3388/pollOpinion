@@ -1,6 +1,10 @@
 <ion-content [fullscreen]="true">
-<ion-card style="--background: transparent !important;" >
-  <ion-item  *ngFor="let poll of polls;let i=index" style="margin: 0 0 12px;border-radius: 10px;" class="animate__animated animate__flipInX">
+<div *ngIf="polls.length==0">
+    <h2 style="text-align:center;top:40%">No records found!</h2>
+  </div>
+  <ion-card style="--background: transparent !important;" >
+    <ion-item  *ngFor="let poll of polls;let i=index" style="margin: 0 0 12px;border-radius: 10px;" class="animate__animated animate__flipInX">
+   
     <!-- <ion-label> -->
     <div style="display: flex; flex-direction: column;padding: 10px 5px;">
    
