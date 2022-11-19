@@ -10,6 +10,7 @@ export class Tab4Page implements OnInit {
   polls:any;
   alreadyVoted = false;
   percen:Number = 0
+  error:any=''
   constructor(public pollservice: PollserviceService,) { }
 
   ngOnInit() {
@@ -61,10 +62,12 @@ export class Tab4Page implements OnInit {
       this.pollservice.postApi(url,params).subscribe(response =>{
        var res:any = response
        var publishRes = res.userPollList
+       this.error = ''
        if(publishRes.length){
         this.calculateTotalVotes(publishRes)
           
        }else{
+        this.error ="No Record Found"
         console.log('no record found')
        }
 
