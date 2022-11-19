@@ -115,7 +115,8 @@ export class Tab1Page {
         "sessionId": sessionId,
       }
       this.pollserviceService.postApi('/addVote',param).subscribe(data=>{
-  
+        this.polls[pollId].poll.totalVotes = this.polls[pollId].poll.totalVotes  + 1;
+
       },err=>{
   
       })
